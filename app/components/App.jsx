@@ -1,6 +1,9 @@
 import React from 'react';
 import uuid from 'uuid';
 import Notes from './Notes';
+import Hedgehog from './Hedgehog';
+
+var i = 1;
 
 export default class App extends React.Component {
 
@@ -26,19 +29,24 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <button onClick={this.addNote}>+</button>
+				<Hedgehog />
+        <button onClick={this.addNote}>+ Add Note</button>
         <Notes notes={notes} />
       </div>
     )
   }
 
+
   addNote = () => {
+
       this.setState({
         notes: this.state.notes.concat([{
           id: uuid.v4(),
-          task: 'New task'
+          task: 'New task ' + i
         }])
       });
+
+			i++;
   }
 
 }
