@@ -1,9 +1,6 @@
 import React from 'react';
 import uuid from 'uuid';
 import Notes from './Notes';
-import Hedgehog from './Hedgehog';
-
-var i = 1;
 
 export default class App extends React.Component {
 
@@ -29,9 +26,8 @@ export default class App extends React.Component {
 
     return (
       <div>
-				<Hedgehog />
         <button onClick={this.addNote}>+ Add Note</button>
-        <Notes notes={notes} />
+        <Notes notes={notes} onDelete={this.deleteNote} />
       </div>
     )
   }
@@ -42,11 +38,19 @@ export default class App extends React.Component {
       this.setState({
         notes: this.state.notes.concat([{
           id: uuid.v4(),
-          task: 'New task ' + i
+          task: 'New task '
         }])
       });
 
-			i++;
   }
 
+  deleteNote = (id, e) => {
+    // avoid bubbling to edit
+    e.stopPropagation();
+
+    this.setState({
+      // set all notes to ones that are not equal to the specified ID. Guess that's one way to do it.
+      notes: this.state.notes.filter(note => note.id !== id)
+    });
+  }
 }
