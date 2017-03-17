@@ -11,11 +11,11 @@ export default class App extends React.Component {
       notes: [
         {
           id: uuid.v4(),
-          task: 'Gather Mushrooms'
+          task: 'Pet Hedgehog'
         },
         {
           id: uuid.v4(),
-          task: 'Pet Hedgehog'
+          task: 'Gather Shitake mushrooms'
         }
       ]
     };
@@ -53,4 +53,5 @@ export default class App extends React.Component {
       notes: this.state.notes.filter(note => note.id !== id)
     });
   }
+
 }
